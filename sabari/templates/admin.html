@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Exams - Exam Schedule</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://www.alagappauniversity.ac.in/img/core-img/alu-slide1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .error-message {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            padding: 1rem;
+            border-radius: 0.25rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <center><img src="https://da.alagappauniversity.ac.in/Assets/img/logo/home_logo.png" height="200" width="600" alt="Alagappa University Logo"></center>
+    <div class="container">
+        <h1 class="my-4 text-center" style="color: rgb(0, 6, 12); font-family: fantasy;">📜 Manage Exams (Admin)</h1>
+
+        {% if error %}
+            <div class="error-message">{{ error }}</div>
+        {% endif %}
+
+        <!-- Exam Management Table -->
+        <table class="table table-bordered table-hover" id="examTable">
+            <thead class="table-dark">
+                <tr>
+                    <th>Exam Code</th>
+                    <th>Subject</th>
+                    <th>Semester</th>
+                    <th>Department</th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if exams %}
+                    {% for exam in exams %}
+                        <tr>
+                            <td>{{ exam.exam_code }}</td>
+                            <td>{{ exam.subject }}</td>
+                            <td>{{ exam.semester }}</td>
+                            <td>{{ exam.department }}</td>
+                            <td>{{ exam.exam_date }}</td>
+                            <td>{{ exam.start_time }}</td>
+                            <td>{{ exam.end_time }}</td>
+                            <td>
+                                <!-- Edit Form (Inline) -->
+                                <form method="POST" action="/admin" class="d-inline">
+                                    <input type="hidden" name="action" value="edit">
+                                    <input type="hidden" name="exam_code" value="{{ exam.exam_code }}">
+                                    <input type="text" name="subject" value="{{ exam.subject }}" class="form-control d-inline-block" style="width: auto;" required>
+                                    <input type="text" name="semester" value="{{ exam.semester }}" class="form-control d-inline-block" style="width: 60px;" required>
+                                    <input type="text" name="department" value="{{ exam.department }}" class="form-control d-inline-block" style="width: 80px;" required>
+                                    <input type="text" name="exam_date" value="{{ exam.exam_date }}" class="form-control d-inline-block" style="width: 100px;" required>
+                                    <input type="text" name="start_time" value="{{ exam.start_time }}" class="form-control d-inline-block" style="width: 90px;" required>
+                                    <input type="text" name="end_time" value="{{ exam.end_time }}" class="form-control d-inline-block" style="width: 90px;" required>
+                                    <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                                </form>
+                                <!-- Delete Form -->
+                                <form method="POST" action="/admin" class="d-inline">
+                                    <input type="hidden" name="action" value="delete">
+                                    <input type="hidden" name="exam_code" value="{{ exam.exam_code }}">
+                                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this exam?')">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="8" class="text-center">No exams available.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+        <!-- Navigation Links -->
+        <div class="text-center">
+            <a href="/index" class="btn btn-primary">Back to Schedule</a>
+            <a href="/add" class="btn btn-success">Add New Exam</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

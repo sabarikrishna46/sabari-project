@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXAM SCHEDULE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://www.alagappauniversity.ac.in/img/core-img/alu-slide1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+    <center><img src="https://da.alagappauniversity.ac.in/Assets/img/logo/home_logo.png" height="200" width="600" alt=""></center>
+    <div class="container">
+        <h1 class="my-4 text-center" style="color: rgb(0, 6, 12); font-family: fantasy;">📜EXAM SCHEDULE</h1>
+
+        <!-- Filter Form -->
+        <form method="GET" action="/index" class="mb-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="semester" class="form-label" style="color: rgb(1, 7, 14);">Filter by Semester:</label>
+                    <select name="semester" id="semester" class="form-select">
+                        <option value="">All Semesters</option>
+                        <option value="1">Sem 1</option>
+                        <option value="2">Sem 2</option>
+                        <option value="3">Sem 3</option>
+                        <option value="4">Sem 4</option>
+                        <option value="5">Sem 5</option>
+                        <option value="6">Sem 6</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="department" class="form-label" style="color: rgb(0, 2, 3);">Filter by Department:</label>
+                    <select name="department" id="department" class="form-select">
+                        <option value="">All Departments</option>
+                        <option value="CS">CS</option>
+                        <option value="PHY">PHY</option>
+                        <option value="CHEM">CHEM</option>
+                        <option value="TAM">TAM</option>
+                        <option value="ENG">ENG</option>
+                        <option value="MATH">MATH</option>
+                        <option value="ECO">ECO</option>
+                        <option value="HIST">HIST</option>
+                        <option value="ALL">ALL</option>
+                    </select>
+                </div>
+                <div class="col-md-4 align-self-end">
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                     <a href="/download_pdf?semester=1&department=ALL" class="btn btn-success">Download Exam PDF</a>
+
+                </div>
+            </div>
+        </form>
+
+        <!-- Exam Schedule Table -->
+        <table class="table table-bordered table-hover" id="examTable">
+            <thead class="table-dark">
+                <tr>
+                    <th>Exam Code</th>
+                    <th>Subject</th>
+                    <th>Semester</th>
+                    <th>Department</th>
+                    <th>Date</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if exams %}
+                    {% for exam in exams %}
+                        <tr>
+                            <td>{{ exam.exam_code }}</td>
+                            <td>{{ exam.subject }}</td>
+                            <td>{{ exam.semester }}</td>
+                            <td>{{ exam.department }}</td>
+                            <td>{{ exam.exam_date }}</td>
+                            <td>{{ exam.start_time }}</td>
+                            <td>{{ exam.end_time }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="7" class="text-center">No exams scheduled.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+        <!-- Links to Admin Pages -->
+        <div class="text-center">
+            <a href="{{url_for('login',next='add')}}" class="btn btn-success">Add New Exam (Admin)</a>
+            <a href="/login?next=manage" class="btn btn-warning">Manage Exams</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

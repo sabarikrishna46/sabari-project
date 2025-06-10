@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Schedule Management System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+        .sk:hover{
+            color: #e74c3c;
+        }
+        .sk{
+            animation: hai 5s infinite;
+        }
+        
+
+        @keyframes hai {
+            0%{color:rgb(22, 255, 224)}
+            10%{color:rgb(255, 5, 5)}
+            20% {color: rgb(0, 255, 98)}
+            30% {color:rgb(255, 0, 234)d}
+            40%{color:rgb(255, 238, 0)}
+            50% {color: rgb(255, 72, 0)}
+            60%{color:rgb(255, 127, 8)}
+            70% {color: rgb(0, 183, 255)}
+            80%{color:orangered}
+            90% {color: rgb(0, 255, 34)}
+            100%{color:rgb(255, 255, 255)}
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background-color: #2c3e50;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .nav-links .btn {
+            background-color: #3498db;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .nav-links .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 2px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background-image: url('../static/pg5.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 50px;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 10px 100px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 5px;
+            font-weight: 700;
+        }
+
+        .primary-btn {
+            background-color: #3c47e7;
+        }
+
+        .primary-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 140px 50px;
+            text-align: center;
+            background-color:rgb(21, 214, 130);
+        }
+
+        .features h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card img {
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* About Section */
+        .about {
+           height: 100vh;
+            background-image: url('../static/pg4.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .about h2 {
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .about p {
+            font-size: 18px;
+            color: #000000;
+        }
+
+        /* Contact Section */
+        .contact {
+            height: 100vh;
+            background-image: url('../static/pg6.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .contact h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .contact-form textarea {
+            height: 100px;
+        }
+
+        .contact-form button {
+            align-self: center;
+            
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #2c3e50;
+                padding: 20px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>📝EXAM SCHEDULE MANAGEMENT SYSTEM</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a class="sk" href="#home">🏠home</a></li>
+                <li><a class="sk" href="#features">🌟Features</a></li>
+                <li><a class="sk" href="#about">📄About</a></li>
+                <li><a class="sk" href="#contact">☎️Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+             <div style="max-width: 1000px; margin: auto; text-align: center;">
+                <br><br><br>
+    <p style="font-size: 1.2em; color: #ffffff; margin-top: 20px;">
+      Welcome to the Exam Schedule Management System – your one-stop platform to manage, view, and organize examination timetables efficiently.
+    </p>
+
+    <div style="margin-top: 40px;">
+      <h2 style="color: #ffffff;">🎯 ADVANTAGES</h2>
+      <ul style="list-style: none; padding-left: 0; padding-bottom: 320px; font-size: 1.1em; color: #ffffff; line-height: 1.8;">
+        <li>✔️ Filter exam schedules by semester and department</li>
+        <li>✔️ View subject details, codes, and timing with ease</li>
+        <li>✔️ Download exam timetables in PDF formats</li>
+        <li>✔️ Admin panel for schedule updates and uploads</li>
+        <li>✔️ Mobile-friendly and easy to navigate interface</li>
+      </ul>
+    </div>
+            <a style="padding-left: 50"; href="{{url_for('index')}}" class="btn primary-btn">view exam</a>
+        </div>
+    </section>
+    
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <img src="static/OIP.jpeg" height='200' width='200' alt="">
+                <h3>Create & Manage Schedules</h3>
+                <p>Easily create, edit, and share exam schedules for students and faculty.</p>
+            </div>
+            <div class="feature-card">
+                <img src="static/pg2.jpeg" height='200' width='200' alt="">
+                <h3>Automated Notifications</h3>
+                <p>Receive timely reminders for upcoming exams and schedule changes.</p>
+            </div>
+            <div class="feature-card">
+                <img src="static/pg.jpeg" alt="">
+                <h3>Multi-User Access</h3>
+                <p>Role-based access for admins, teachers, and students.</p>
+            </div>
+            <div class="feature-card">
+                <img src="static/pg3.jpeg" height='200'width='200' alt="">
+                <h3>Reports & Analytics</h3>
+                <p>Generate detailed reports on exam schedules and performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about"><br><br><br><br>
+        <h5 style="font-size:100px;"><center>About</center></h5>
+        <div style="text-align: center;">
+        <p>From the Developers
+Exam Scheduling is a laborious and time-consuming job and requires much planning. Exam seating arrangement and allocating invigilation duties during exam requires much time and effort. To simplify the process of exam scheduling, we created a web application which can automate the process of exam-scheduling and save a lot of time and effort. Examination Scheduling Management System atomizes the process of assigning seating arrangement. The dates of examination are provided to the system, the system accesses the college database for student and classroom information and creates an exam schedule on the given dates. The system allocates invigilation to faculties on examination day based on their availability..</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact"><br><br><br><br><br>
+        <h2><center>Contact Us</center></h2>
+        <p><center>Have questions? Reach out to our support team!</center></p>
+        <form class="contact-form">
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn primary-btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 ExamSchedule. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Hamburger Menu -->
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
