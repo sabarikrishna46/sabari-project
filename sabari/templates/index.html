@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EXAM SCHEDULE</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -16,7 +17,9 @@
     </style>
 </head>
 <body>
-    <center><img src="https://da.alagappauniversity.ac.in/Assets/img/logo/home_logo.png" height="200" width="600" alt=""></center>
+    <center>
+        <img src="https://da.alagappauniversity.ac.in/Assets/img/logo/home_logo.png" height="200" width="600" alt="">
+    </center>
     <div class="container">
         <h1 class="my-4 text-center" style="color: rgb(0, 6, 12); font-family: fantasy;">📜EXAM SCHEDULE</h1>
 
@@ -26,34 +29,34 @@
                 <div class="col-md-4">
                     <label for="semester" class="form-label" style="color: rgb(1, 7, 14);">Filter by Semester:</label>
                     <select name="semester" id="semester" class="form-select">
-                        <option value="">All Semesters</option>
-                        <option value="1">Sem 1</option>
-                        <option value="2">Sem 2</option>
-                        <option value="3">Sem 3</option>
-                        <option value="4">Sem 4</option>
-                        <option value="5">Sem 5</option>
-                        <option value="6">Sem 6</option>
+                        <option value="" {% if not request.args.get('semester') %}selected{% endif %}>All Semesters</option>
+                        <option value="1" {% if request.args.get('semester') == '1' %}selected{% endif %}>Sem 1</option>
+                        <option value="2" {% if request.args.get('semester') == '2' %}selected{% endif %}>Sem 2</option>
+                        <option value="3" {% if request.args.get('semester') == '3' %}selected{% endif %}>Sem 3</option>
+                        <option value="4" {% if request.args.get('semester') == '4' %}selected{% endif %}>Sem 4</option>
+                        <option value="5" {% if request.args.get('semester') == '5' %}selected{% endif %}>Sem 5</option>
+                        <option value="6" {% if request.args.get('semester') == '6' %}selected{% endif %}>Sem 6</option>
                     </select>
                 </div>
                 <div class="col-md-4">
                     <label for="department" class="form-label" style="color: rgb(0, 2, 3);">Filter by Department:</label>
                     <select name="department" id="department" class="form-select">
-                        <option value="">All Departments</option>
-                        <option value="CS">CS</option>
-                        <option value="PHY">PHY</option>
-                        <option value="CHEM">CHEM</option>
-                        <option value="TAM">TAM</option>
-                        <option value="ENG">ENG</option>
-                        <option value="MATH">MATH</option>
-                        <option value="ECO">ECO</option>
-                        <option value="HIST">HIST</option>
-                        <option value="ALL">ALL</option>
+                        <option value="" {% if not request.args.get('department') %}selected{% endif %}>All Departments</option>
+                        <option value="CS" {% if request.args.get('department') == 'CS' %}selected{% endif %}>CS</option>
+                        <option value="PHY" {% if request.args.get('department') == 'PHY' %}selected{% endif %}>PHY</option>
+                        <option value="CHEM" {% if request.args.get('department') == 'CHEM' %}selected{% endif %}>CHEM</option>
+                        <option value="TAM" {% if request.args.get('department') == 'TAM' %}selected{% endif %}>TAM</option>
+                        <option value="ENG" {% if request.args.get('department') == 'ENG' %}selected{% endif %}>ENG</option>
+                        <option value="MATH" {% if request.args.get('department') == 'MATH' %}selected{% endif %}>MATH</option>
+                        <option value="ECO" {% if request.args.get('department') == 'ECO' %}selected{% endif %}>ECO</option>
+                        <option value="HIST" {% if request.args.get('department') == 'HIST' %}selected{% endif %}>HIST</option>
+                        <option value="ALL" {% if request.args.get('department') == 'ALL' %}selected{% endif %}>ALL</option>
                     </select>
                 </div>
                 <div class="col-md-4 align-self-end">
                     <button type="submit" class="btn btn-primary">Filter</button>
-                     <a href="/download_pdf?semester=1&department=ALL" class="btn btn-success">Download Exam PDF</a>
-
+                    <a id="downloadPdfBtn" class="btn btn-success">Download Exam PDF</a>
+                    <a href="/" class="btn btn-success">HOME</a>
                 </div>
             </div>
         </form>
@@ -92,6 +95,9 @@
             </tbody>
         </table>
 
+        <!-- Calendar View -->
+        <div id="examCalendar" style="margin: 40px 0;"></div>
+
         <!-- Links to Admin Pages -->
         <div class="text-center">
             <a href="{{url_for('login',next='add')}}" class="btn btn-success">Add New Exam (Admin)</a>
@@ -100,5 +106,23 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var btn = document.getElementById('downloadPdfBtn');
+        var semester = document.getElementById('semester');
+        var department = document.getElementById('department');
+        function updateLink() {
+            var semVal = semester ? semester.value : '';
+            var deptVal = department ? department.value : '';
+            btn.href = `/download_pdf?semester=${encodeURIComponent(semVal)}&department=${encodeURIComponent(deptVal)}`;
+        }
+        if (btn && semester && department) {
+            updateLink(); // set link on page load
+            semester.addEventListener('change', updateLink);
+            department.addEventListener('change', updateLink);
+        }
+    });
+    </script>
 </body>
 </html>

@@ -133,7 +133,7 @@
 
         /* Features Section */
         .features {
-            padding: 140px 50px;
+            padding: 200px 50px;
             text-align: center;
             background-color:rgb(21, 214, 130);
         }
@@ -325,26 +325,28 @@
     <section id="features" class="features">
         <h2>Key Features</h2>
         <div class="feature-grid">
-            <div class="feature-card">
+        
+                
+                <a href="{{url_for('create_page')}}" class="feature-card">
                 <img src="static/OIP.jpeg" height='200' width='200' alt="">
                 <h3>Create & Manage Schedules</h3>
-                <p>Easily create, edit, and share exam schedules for students and faculty.</p>
-            </div>
-            <div class="feature-card">
+                
+            </a>
+            <a href="{{url_for('notifications_page')}}" class="feature-card">
                 <img src="static/pg2.jpeg" height='200' width='200' alt="">
                 <h3>Automated Notifications</h3>
-                <p>Receive timely reminders for upcoming exams and schedule changes.</p>
-            </div>
-            <div class="feature-card">
+              
+            </a>
+            <a href="{{url_for('multi_user_page')}}" class="feature-card">
                 <img src="static/pg.jpeg" alt="">
                 <h3>Multi-User Access</h3>
-                <p>Role-based access for admins, teachers, and students.</p>
-            </div>
-            <div class="feature-card">
-                <img src="static/pg3.jpeg" height='200'width='200' alt="">
+               
+            </a>
+            <a href="{{url_for('reports_page')}}" class="feature-card">
+                <img src="static/pg3.jpeg" height='200' width='200' alt="">
                 <h3>Reports & Analytics</h3>
-                <p>Generate detailed reports on exam schedules and performance.</p>
-            </div>
+            </a>
+    
         </div>
     </section>
 
