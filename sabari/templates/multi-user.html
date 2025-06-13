@@ -95,10 +95,12 @@
         }
 
         .content {
-            padding: 100px 50px;
-            max-width: 1000px;
-            margin: 0 auto;
+            height: 95vh;
             text-align: center;
+            background-image: url('../static/pg14.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
         }
 
         .content h1 {
@@ -107,8 +109,8 @@
         }
 
         .content p {
-            font-size: 18px;
-            color: #666;
+            font-size: 25px;
+            color: #ffffff;
             margin-bottom: 20px;
         }
 
@@ -184,11 +186,11 @@
         </nav>
     </header>
 
-    <section class="content">
-        <h1>Multi-User Access</h1>
+    <section class="content"><br><br><br>
+        <h1 style="color: #ffffff;">Multi-User Access</h1><br><br><br><br><br><br><br><br>
         <p>Our system supports role-based access for different types of users: administrators, teachers, and students. Administrators can manage schedules and invigilation duties, teachers can view and update relevant schedules, and students can access their exam timetables and receive notifications.</p>
         <p>This feature ensures secure and tailored access, allowing each user to interact with the system based on their role, enhancing efficiency and security across the platform.</p>
-       <a class="sk" href="{{url_for('home')}}#features">Back to Features</a>
+       <a href="{{url_for('home')}}#features" class="btn primary-btn">back to feature</a>
     </section>
 
     <footer>

@@ -98,8 +98,8 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
-            background-image: url('../static/pg5.jpg');
+            height: 110vh;
+            background-image: url('../static/pg8.avif');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
@@ -133,14 +133,17 @@
 
         /* Features Section */
         .features {
-            padding: 200px 50px;
-            text-align: center;
-            background-color:rgb(21, 214, 130);
+            height: 100vh;
+            background-image: url('../static/pg9.avif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
         }
 
         .features h2 {
             font-size: 36px;
-            margin-bottom: 40px;
+            color: aliceblue;
+            margin-left: 650px;
         }
 
         .feature-grid {
@@ -153,7 +156,7 @@
 
         .feature-card {
             background-color: #fff;
-            padding: 20px;
+            padding: 50px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
@@ -302,29 +305,29 @@
         <div class="hero-content">
              <div style="max-width: 1000px; margin: auto; text-align: center;">
                 <br><br><br>
-    <p style="font-size: 1.2em; color: #ffffff; margin-top: 20px;">
+    <p style="font-size: 1.2em; color: #000000; margin-top: 20px;">
       Welcome to the Exam Schedule Management System – your one-stop platform to manage, view, and organize examination timetables efficiently.
     </p>
 
     <div style="margin-top: 40px;">
-      <h2 style="color: #ffffff;">🎯 ADVANTAGES</h2>
-      <ul style="list-style: none; padding-left: 0; padding-bottom: 320px; font-size: 1.1em; color: #ffffff; line-height: 1.8;">
+      <h2 style="color: #000000;">🎯 ADVANTAGES</h2>
+      <ul style="list-style: none; padding-left: 0; padding-bottom: 320px; font-size: 1.1em; color: #000000; line-height: 1.8;">
         <li>✔️ Filter exam schedules by semester and department</li>
         <li>✔️ View subject details, codes, and timing with ease</li>
         <li>✔️ Download exam timetables in PDF formats</li>
         <li>✔️ Admin panel for schedule updates and uploads</li>
-        <li>✔️ Mobile-friendly and easy to navigate interface</li>
+        <li>✔️ Mobile-friendly and easy to navigate interface</li><br>
+        <a href="{{url_for('index')}}" class="btn primary-btn">view exam</a>
       </ul>
     </div>
-            <a style="padding-left: 50"; href="{{url_for('index')}}" class="btn primary-btn">view exam</a>
         </div>
     </section>
     
 
     <!-- Features Section -->
     <section id="features" class="features">
-        <h2>Key Features</h2>
-        <div class="feature-grid">
+        <h2 style="padding-top: 80px;">Key Features</h2>
+        <div class="feature-grid" style="padding-top: 150px;">
         
                 
                 <a href="{{url_for('create_page')}}" class="feature-card">
@@ -369,12 +372,30 @@ Exam Scheduling is a laborious and time-consuming job and requires much planning
     <p>Phone: 9043853529</p><br>
     <p>Address: P.Sabari Krishna, Silamegavalanadu, Puliyal(PO), Devakottai(TK), Sivagangai(DT)</p><br>
 
-    <h3>Follow Us</h3><br>
-    <p>
-        <a href="https://www.instagram.com/accounts/password/reset/?hl=en"><i class="fab fa-instagram"></i></a> |
-        <a href=""><i class="fab fa-facebook"></i></a>
-    </p>
-    </section></center><br>
+   <h3>Follow Us</h3><br>
+
+<!-- Instagram Image Logo -->
+<a href="https://instagram.com/exam_schedule_management" target="_blank">
+  <img src="../static/Screenshot 2025-06-13 161807.png" alt="Instagram Logo" style="width: 32px; height: 32px; border-radius: 6px; margin-right: 10px;">
+</a>
+
+<!-- Font Awesome Instagram Icon -->
+<a href="https://instagram.com/skill_development_traker" target="_blank">
+  <i class="fab fa-instagram" style="font-size: 32px; color: #E1306C;"></i>
+
+</a>
+<a href="https://facebook.com/exam_schedule_management" target="_blank">
+  <img src="../static/Screenshot 2025-06-13 180641.png" alt="facebook Logo" style="width: 32px; height: 32px; border-radius: 6px; margin-right: 10px;">
+</a>
+
+<!-- Font Awesome Instagram Icon -->
+<a href="https://instagram.com/skill_development_traker" target="_blank">
+  <i class="fab fa-instagram" style="font-size: 32px; color: #E1306C;"></i>
+  
+</a>
+
+   
+    </section></center>
 
     <!-- Footer -->
     <footer>

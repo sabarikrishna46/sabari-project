@@ -95,10 +95,12 @@
         }
 
         .content {
-            padding: 100px 50px;
-            max-width: 1000px;
-            margin: 0 auto;
+            height: 92vh;
             text-align: center;
+            background-image: url('../static/pg11.avif');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
         }
 
         .content h1 {
@@ -108,7 +110,7 @@
 
         .content p {
             font-size: 18px;
-            color: #666;
+            color: #ffffff;
             margin-bottom: 20px;
         }
 
@@ -184,11 +186,11 @@
         </nav>
     </header>
 
-    <section class="content">
-        <h1>Reports & Analytics</h1>
+    <section class="content"><br><br><br>
+        <h1 style="color: #ffffff;">Reports & Analytics</h1><br>
         <p>Generate comprehensive reports and analytics to gain insights into exam schedules and performance. Our system allows administrators to create detailed reports on exam scheduling efficiency, room utilization, and invigilator assignments.</p>
         <p>Analytics tools provide visual representations of data, such as charts and graphs, to help identify trends and optimize future scheduling. Reports can be exported in multiple formats for presentations or record-keeping.</p>
-      <a class="sk" href="{{url_for('home')}}#features">Back to Features</a>
+     <a href="{{url_for('home')}}#features" class="btn primary-btn">back to feature</a>
     </section>
 
     <footer>
